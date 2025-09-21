@@ -19,11 +19,6 @@ namespace MTM_Forms
         {
             InitializeComponent();
 
-            if (repairType == null)
-            {
-                return;
-            }
-
             RepairType = repairType;
 
             nameTextBox.Text = RepairType.Name;
@@ -32,15 +27,25 @@ namespace MTM_Forms
             minutesNumericUpDown.Value = RepairType.Duration.Minutes;
             costNumericUpDown.Value = RepairType.Cost;
             notesTextBox.Text = RepairType.Notes;
-
         }
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            RepairType.Name = nameTextBox.Text;
-            RepairType.Duration = new TimeSpan((int) daysNumericUpDown.Value, (int) hoursNumericUpDown.Value, 
-                (int) minutesNumericUpDown.Value, 0);
-            RepairType.Cost = (int) costNumericUpDown.Value;
+            foreach (var repairType in Storage.RepairTypes)
+            {
+                if (repairType.Value.Name.Equals(nameTextBox.Text.Trim()) && RepairType != repairType.Value)
+                {
+                    MessageBox.Show("Ремонт с таким названием уже существует", "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    DialogResult = DialogResult.Cancel;
+                    return;
+                }
+            }
+
+            RepairType.Name = nameTextBox.Text.Trim();
+            RepairType.Duration = new TimeSpan((int)daysNumericUpDown.Value, (int)hoursNumericUpDown.Value,
+                (int)minutesNumericUpDown.Value, 0);
+            RepairType.Cost = (int)costNumericUpDown.Value;
             RepairType.Notes = notesTextBox.Text;
         }
     }

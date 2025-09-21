@@ -11,6 +11,25 @@ namespace MachineToolMaintenance
     /// </summary>
     public class MachineToolType : IValidatable
     {
+        /// </summary>
+        /// Уникальный ID типа станка (аналог автоинкремента)
+        /// </summary>
+        private static int _newMachineToolType = 0;
+
+        private static int NewMachineToolType
+        {
+            get
+            {
+                _newMachineToolType++;
+                return _newMachineToolType;
+            }
+        }
+
+        /// <summary>
+        /// Уникальный ID типа станка
+        /// </summary>
+        public int Id { get; }
+
         /// <summary>
         /// Страна производителя станка
         /// </summary>
@@ -35,8 +54,8 @@ namespace MachineToolMaintenance
         {
             get
             {
-                if (YearOfManufacture >= 1900 && YearOfManufacture <= DateTime.Now.Year &&
-                    Warranty >= 0 && Warranty <= 120)
+                if (Id >= 1 && YearOfManufacture >= 1900 && 
+                    YearOfManufacture <= DateTime.Now.Year && Warranty >= 0 && Warranty <= 120)
                 {
                     return true;
                 }
@@ -46,21 +65,25 @@ namespace MachineToolMaintenance
 
         public MachineToolType()
         {
-
+            Id = NewMachineToolType;
         }
 
-        public MachineToolType(Country country, int yearOfManufacture, Brand brand)
+        public MachineToolType(Country country, int yearOfManufacture, Brand brand, int warranty)
         {
+            Id = NewMachineToolType;
             Country = country;
             YearOfManufacture = yearOfManufacture;
             Brand = brand;
+            Warranty = warranty;
         }
 
         public override string ToString()
         {
-            return $"[Производитель: {Country} ; " +
+            return $"ID: {Id} ; " +
+                $"Производитель: {Country} ; " +
                 $"Год выпуска: {YearOfManufacture} ; " +
-                $"Бренд: {Brand}]";
+                $"Бренд: {Brand} ; " + 
+                $"Гарантия (в месяцах) : {Warranty}";
         }
     }
 }

@@ -49,6 +49,7 @@
     <Compile Include="enums\Brand.cs" />
     <Compile Include="enums\Country.cs" />
     <Compile Include="IValidatable.cs" />
+    <Compile Include="Storage.cs" />
     <Compile Include="MachineToolType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repair.cs" />

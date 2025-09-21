@@ -44,7 +44,7 @@
             // countryLabel
             // 
             this.countryLabel.AutoSize = true;
-            this.countryLabel.Location = new System.Drawing.Point(83, 37);
+            this.countryLabel.Location = new System.Drawing.Point(91, 66);
             this.countryLabel.Name = "countryLabel";
             this.countryLabel.Size = new System.Drawing.Size(163, 16);
             this.countryLabel.TabIndex = 0;
@@ -53,7 +53,7 @@
             // yearOfManufactureLabel
             // 
             this.yearOfManufactureLabel.AutoSize = true;
-            this.yearOfManufactureLabel.Location = new System.Drawing.Point(116, 101);
+            this.yearOfManufactureLabel.Location = new System.Drawing.Point(123, 112);
             this.yearOfManufactureLabel.Name = "yearOfManufactureLabel";
             this.yearOfManufactureLabel.Size = new System.Drawing.Size(91, 16);
             this.yearOfManufactureLabel.TabIndex = 1;
@@ -62,7 +62,7 @@
             // brandLabel
             // 
             this.brandLabel.AutoSize = true;
-            this.brandLabel.Location = new System.Drawing.Point(134, 160);
+            this.brandLabel.Location = new System.Drawing.Point(138, 165);
             this.brandLabel.Name = "brandLabel";
             this.brandLabel.Size = new System.Drawing.Size(52, 16);
             this.brandLabel.TabIndex = 2;
@@ -71,9 +71,9 @@
             // saveButton
             // 
             this.saveButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.saveButton.Location = new System.Drawing.Point(345, 272);
+            this.saveButton.Location = new System.Drawing.Point(321, 281);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(125, 54);
+            this.saveButton.Size = new System.Drawing.Size(164, 45);
             this.saveButton.TabIndex = 6;
             this.saveButton.Text = "Сохранить";
             this.saveButton.UseVisualStyleBackColor = true;
@@ -82,7 +82,7 @@
             // countryComboBox
             // 
             this.countryComboBox.FormattingEnabled = true;
-            this.countryComboBox.Location = new System.Drawing.Point(281, 37);
+            this.countryComboBox.Location = new System.Drawing.Point(287, 63);
             this.countryComboBox.Name = "countryComboBox";
             this.countryComboBox.Size = new System.Drawing.Size(121, 24);
             this.countryComboBox.TabIndex = 7;
@@ -90,14 +90,14 @@
             // brandComboBox
             // 
             this.brandComboBox.FormattingEnabled = true;
-            this.brandComboBox.Location = new System.Drawing.Point(281, 157);
+            this.brandComboBox.Location = new System.Drawing.Point(287, 165);
             this.brandComboBox.Name = "brandComboBox";
             this.brandComboBox.Size = new System.Drawing.Size(121, 24);
             this.brandComboBox.TabIndex = 8;
             // 
             // yearOfManufactureNumericUpDown
             // 
-            this.yearOfManufactureNumericUpDown.Location = new System.Drawing.Point(281, 101);
+            this.yearOfManufactureNumericUpDown.Location = new System.Drawing.Point(288, 112);
             this.yearOfManufactureNumericUpDown.Maximum = new decimal(new int[] {
             2025,
             0,
@@ -120,15 +120,15 @@
             // warrayntyLabel
             // 
             this.warrayntyLabel.AutoSize = true;
-            this.warrayntyLabel.Location = new System.Drawing.Point(103, 217);
+            this.warrayntyLabel.Location = new System.Drawing.Point(100, 211);
             this.warrayntyLabel.Name = "warrayntyLabel";
-            this.warrayntyLabel.Size = new System.Drawing.Size(143, 16);
+            this.warrayntyLabel.Size = new System.Drawing.Size(146, 16);
             this.warrayntyLabel.TabIndex = 10;
-            this.warrayntyLabel.Text = "Гарантия (в месяцах)";
+            this.warrayntyLabel.Text = "Гарантия (в месяцах):";
             // 
             // warrantyNumericUpDown
             // 
-            this.warrantyNumericUpDown.Location = new System.Drawing.Point(281, 215);
+            this.warrantyNumericUpDown.Location = new System.Drawing.Point(288, 211);
             this.warrantyNumericUpDown.Maximum = new decimal(new int[] {
             120,
             0,
@@ -155,7 +155,7 @@
             this.Controls.Add(this.countryLabel);
             this.Name = "MachineToolTypeForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "MachineToolTypeForm";
+            this.Text = "Тип станка";
             ((System.ComponentModel.ISupportInitialize)(this.yearOfManufactureNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.warrantyNumericUpDown)).EndInit();
             this.ResumeLayout(false);

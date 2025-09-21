@@ -24,12 +24,12 @@ namespace MachineToolMaintenance
         /// <summary>
         /// Дата начала ремонта
         /// </summary>
-        public DateTime StartDate { get; set; } = DateTime.MinValue;
+        public DateTime StartDate { get; set; } = new DateTime(2025, 10, 26);
 
         /// <summary>
-        /// Примечания к ремонту
+        /// Примечания к записи
         /// </summary>
-        public string Notes { get; set; } = "";
+        public string Notes { get; set; } = "Отсутствуют";
 
         /// <summary>
         /// Дата отсчёта ремонтов в системе
@@ -41,7 +41,8 @@ namespace MachineToolMaintenance
             get
             {
                 if (MachineToolType != null && MachineToolType.IsValid && RepairType != null 
-                    && RepairType.IsValid && StartDate >= SystemStartDate && Notes.Length > 0)
+                    && RepairType.IsValid && StartDate >= SystemStartDate &&
+                    Notes.Length > 5 && Notes.Length < 200)
                 {
                     return true;
                 }
@@ -64,10 +65,10 @@ namespace MachineToolMaintenance
 
         public override string ToString()
         {
-            return $"[Станок: {MachineToolType} ; " +
-                $"Тип ремонта: {RepairType.Name} ; " +
-                $"Дата начала: {StartDate} ; " +
-                $"Примечание: {Notes}]";
+            return $"Идентификатор станка: {MachineToolType.Id} ; " +
+                $"Название ремонта: {RepairType.Name} ; " +
+                $"Дата начала ремонта: {StartDate} ; " +
+                $"Примечания: {Notes}";
         }
     }
 }

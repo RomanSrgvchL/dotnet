@@ -78,24 +78,26 @@
             // notesLabel
             // 
             this.notesLabel.AutoSize = true;
-            this.notesLabel.Location = new System.Drawing.Point(64, 272);
+            this.notesLabel.Location = new System.Drawing.Point(54, 272);
             this.notesLabel.Name = "notesLabel";
-            this.notesLabel.Size = new System.Drawing.Size(150, 16);
+            this.notesLabel.Size = new System.Drawing.Size(161, 16);
             this.notesLabel.TabIndex = 0;
-            this.notesLabel.Text = "Примечания к станку:";
+            this.notesLabel.Text = "Примечания к ремонту:";
             // 
             // nameTextBox
             // 
             this.nameTextBox.Location = new System.Drawing.Point(242, 51);
+            this.nameTextBox.MaxLength = 200;
             this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.Size = new System.Drawing.Size(138, 22);
+            this.nameTextBox.Size = new System.Drawing.Size(237, 22);
             this.nameTextBox.TabIndex = 1;
             // 
             // notesTextBox
             // 
-            this.notesTextBox.Location = new System.Drawing.Point(269, 266);
+            this.notesTextBox.Location = new System.Drawing.Point(242, 266);
+            this.notesTextBox.MaxLength = 200;
             this.notesTextBox.Name = "notesTextBox";
-            this.notesTextBox.Size = new System.Drawing.Size(138, 22);
+            this.notesTextBox.Size = new System.Drawing.Size(237, 22);
             this.notesTextBox.TabIndex = 1;
             // 
             // costNumericUpDown
@@ -206,7 +208,7 @@
             this.Controls.Add(this.notesLabel);
             this.Name = "RepairTypeForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "RepairTypeForm";
+            this.Text = "Тип ремонта";
             ((System.ComponentModel.ISupportInitialize)(this.costNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.daysNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.hoursNumericUpDown)).EndInit();

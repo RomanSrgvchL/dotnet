@@ -30,27 +30,42 @@ namespace MTM_Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.machineToolTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addMachineToolTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editMachineToolTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.repairTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addRepairTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editRepairTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.repairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addRepairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editRepairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            this.machineToolTypeTabPage = new System.Windows.Forms.TabPage();
+            this.machineToolTypeListView = new System.Windows.Forms.ListView();
+            this.IdColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.countryColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.yearOfManufactureColumnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.brandColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.warrantyColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.repairTypeTabPage = new System.Windows.Forms.TabPage();
+            this.repairTypeListView = new System.Windows.Forms.ListView();
+            this.nameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.repairTabPage = new System.Windows.Forms.TabPage();
+            this.repairListView = new System.Windows.Forms.ListView();
+            this.machineToolTypeIdColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.repairTypeNameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.startDateColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.notesColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.costColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.repairTypeNotesColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.durationColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip.SuspendLayout();
+            this.tabControl.SuspendLayout();
+            this.machineToolTypeTabPage.SuspendLayout();
+            this.repairTypeTabPage.SuspendLayout();
+            this.repairTabPage.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // menuStrip
-            // 
-            this.menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.machineToolTypeToolStripMenuItem,
-            this.repairTypeToolStripMenuItem});
-            this.menuStrip.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(882, 28);
-            this.menuStrip.TabIndex = 0;
-            this.menuStrip.Text = "menuStrip";
             // 
             // machineToolTypeToolStripMenuItem
             // 
@@ -59,7 +74,7 @@ namespace MTM_Forms
             this.editMachineToolTypeToolStripMenuItem});
             this.machineToolTypeToolStripMenuItem.Name = "machineToolTypeToolStripMenuItem";
             this.machineToolTypeToolStripMenuItem.Size = new System.Drawing.Size(98, 24);
-            this.machineToolTypeToolStripMenuItem.Text = "Вид станка";
+            this.machineToolTypeToolStripMenuItem.Text = "Тип станка";
             // 
             // addMachineToolTypeToolStripMenuItem
             // 
@@ -82,7 +97,7 @@ namespace MTM_Forms
             this.editRepairTypeToolStripMenuItem});
             this.repairTypeToolStripMenuItem.Name = "repairTypeToolStripMenuItem";
             this.repairTypeToolStripMenuItem.Size = new System.Drawing.Size(113, 24);
-            this.repairTypeToolStripMenuItem.Text = "Вид ремонта";
+            this.repairTypeToolStripMenuItem.Text = "Тип ремонта";
             // 
             // addRepairTypeToolStripMenuItem
             // 
@@ -98,11 +113,213 @@ namespace MTM_Forms
             this.editRepairTypeToolStripMenuItem.Text = "Редактировать";
             this.editRepairTypeToolStripMenuItem.Click += new System.EventHandler(this.editRepairTypeToolStripMenuItem_Click);
             // 
+            // repairToolStripMenuItem
+            // 
+            this.repairToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addRepairToolStripMenuItem,
+            this.editRepairToolStripMenuItem});
+            this.repairToolStripMenuItem.Name = "repairToolStripMenuItem";
+            this.repairToolStripMenuItem.Size = new System.Drawing.Size(85, 24);
+            this.repairToolStripMenuItem.Text = "Ремонты";
+            // 
+            // addRepairToolStripMenuItem
+            // 
+            this.addRepairToolStripMenuItem.Name = "addRepairToolStripMenuItem";
+            this.addRepairToolStripMenuItem.Size = new System.Drawing.Size(194, 26);
+            this.addRepairToolStripMenuItem.Text = "Добавить";
+            this.addRepairToolStripMenuItem.Click += new System.EventHandler(this.addRepairToolStripMenuItem_Click);
+            // 
+            // editRepairToolStripMenuItem
+            // 
+            this.editRepairToolStripMenuItem.Name = "editRepairToolStripMenuItem";
+            this.editRepairToolStripMenuItem.Size = new System.Drawing.Size(194, 26);
+            this.editRepairToolStripMenuItem.Text = "Редактировать";
+            this.editRepairToolStripMenuItem.Click += new System.EventHandler(this.editRepairToolStripMenuItem_Click);
+            // 
+            // menuStrip
+            // 
+            this.menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.machineToolTypeToolStripMenuItem,
+            this.repairTypeToolStripMenuItem,
+            this.repairToolStripMenuItem});
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Size = new System.Drawing.Size(905, 28);
+            this.menuStrip.TabIndex = 0;
+            this.menuStrip.Text = "menuStrip";
+            // 
+            // tabControl
+            // 
+            this.tabControl.Controls.Add(this.machineToolTypeTabPage);
+            this.tabControl.Controls.Add(this.repairTypeTabPage);
+            this.tabControl.Controls.Add(this.repairTabPage);
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl.Location = new System.Drawing.Point(0, 28);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(905, 378);
+            this.tabControl.TabIndex = 2;
+            // 
+            // machineToolTypeTabPage
+            // 
+            this.machineToolTypeTabPage.Controls.Add(this.machineToolTypeListView);
+            this.machineToolTypeTabPage.Location = new System.Drawing.Point(4, 25);
+            this.machineToolTypeTabPage.Name = "machineToolTypeTabPage";
+            this.machineToolTypeTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.machineToolTypeTabPage.Size = new System.Drawing.Size(897, 349);
+            this.machineToolTypeTabPage.TabIndex = 0;
+            this.machineToolTypeTabPage.Text = "Тип станка";
+            this.machineToolTypeTabPage.UseVisualStyleBackColor = true;
+            // 
+            // machineToolTypeListView
+            // 
+            this.machineToolTypeListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.IdColumnHeader,
+            this.countryColumnHeader,
+            this.yearOfManufactureColumnHeader2,
+            this.brandColumnHeader,
+            this.warrantyColumnHeader});
+            this.machineToolTypeListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.machineToolTypeListView.FullRowSelect = true;
+            this.machineToolTypeListView.GridLines = true;
+            this.machineToolTypeListView.HideSelection = false;
+            this.machineToolTypeListView.Location = new System.Drawing.Point(3, 3);
+            this.machineToolTypeListView.Name = "machineToolTypeListView";
+            this.machineToolTypeListView.Size = new System.Drawing.Size(891, 343);
+            this.machineToolTypeListView.TabIndex = 1;
+            this.machineToolTypeListView.UseCompatibleStateImageBehavior = false;
+            this.machineToolTypeListView.View = System.Windows.Forms.View.Details;
+            // 
+            // IdColumnHeader
+            // 
+            this.IdColumnHeader.Text = "ID";
+            this.IdColumnHeader.Width = 50;
+            // 
+            // countryColumnHeader
+            // 
+            this.countryColumnHeader.Text = "Страна производителя";
+            this.countryColumnHeader.Width = 150;
+            // 
+            // yearOfManufactureColumnHeader2
+            // 
+            this.yearOfManufactureColumnHeader2.Text = "Год выпуска";
+            this.yearOfManufactureColumnHeader2.Width = 100;
+            // 
+            // brandColumnHeader
+            // 
+            this.brandColumnHeader.Text = "Марка";
+            this.brandColumnHeader.Width = 150;
+            // 
+            // warrantyColumnHeader
+            // 
+            this.warrantyColumnHeader.Text = "Срок гарантии (в месяцах)";
+            this.warrantyColumnHeader.Width = 200;
+            // 
+            // repairTypeTabPage
+            // 
+            this.repairTypeTabPage.Controls.Add(this.repairTypeListView);
+            this.repairTypeTabPage.Location = new System.Drawing.Point(4, 25);
+            this.repairTypeTabPage.Name = "repairTypeTabPage";
+            this.repairTypeTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.repairTypeTabPage.Size = new System.Drawing.Size(897, 349);
+            this.repairTypeTabPage.TabIndex = 1;
+            this.repairTypeTabPage.Text = "Тип ремонта";
+            this.repairTypeTabPage.UseVisualStyleBackColor = true;
+            // 
+            // repairTypeListView
+            // 
+            this.repairTypeListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.nameColumnHeader,
+            this.durationColumnHeader,
+            this.costColumnHeader,
+            this.repairTypeNotesColumnHeader});
+            this.repairTypeListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.repairTypeListView.FullRowSelect = true;
+            this.repairTypeListView.GridLines = true;
+            this.repairTypeListView.HideSelection = false;
+            this.repairTypeListView.Location = new System.Drawing.Point(3, 3);
+            this.repairTypeListView.Name = "repairTypeListView";
+            this.repairTypeListView.Size = new System.Drawing.Size(891, 343);
+            this.repairTypeListView.TabIndex = 0;
+            this.repairTypeListView.UseCompatibleStateImageBehavior = false;
+            this.repairTypeListView.View = System.Windows.Forms.View.Details;
+            // 
+            // nameColumnHeader
+            // 
+            this.nameColumnHeader.Text = "Название ремонта";
+            this.nameColumnHeader.Width = 200;
+            // 
+            // repairTabPage
+            // 
+            this.repairTabPage.Controls.Add(this.repairListView);
+            this.repairTabPage.Location = new System.Drawing.Point(4, 25);
+            this.repairTabPage.Name = "repairTabPage";
+            this.repairTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.repairTabPage.Size = new System.Drawing.Size(897, 349);
+            this.repairTabPage.TabIndex = 2;
+            this.repairTabPage.Text = "Ремонты";
+            this.repairTabPage.UseVisualStyleBackColor = true;
+            // 
+            // repairListView
+            // 
+            this.repairListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.machineToolTypeIdColumnHeader,
+            this.repairTypeNameColumnHeader,
+            this.startDateColumnHeader,
+            this.notesColumnHeader});
+            this.repairListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.repairListView.FullRowSelect = true;
+            this.repairListView.GridLines = true;
+            this.repairListView.HideSelection = false;
+            this.repairListView.Location = new System.Drawing.Point(3, 3);
+            this.repairListView.Name = "repairListView";
+            this.repairListView.Size = new System.Drawing.Size(891, 343);
+            this.repairListView.TabIndex = 0;
+            this.repairListView.UseCompatibleStateImageBehavior = false;
+            this.repairListView.View = System.Windows.Forms.View.Details;
+            // 
+            // machineToolTypeIdColumnHeader
+            // 
+            this.machineToolTypeIdColumnHeader.Text = "ID типа станка";
+            this.machineToolTypeIdColumnHeader.Width = 100;
+            // 
+            // repairTypeNameColumnHeader
+            // 
+            this.repairTypeNameColumnHeader.Text = "Название ремонта";
+            this.repairTypeNameColumnHeader.Width = 200;
+            // 
+            // startDateColumnHeader
+            // 
+            this.startDateColumnHeader.Text = "Дата начала ремонта";
+            this.startDateColumnHeader.Width = 150;
+            // 
+            // notesColumnHeader
+            // 
+            this.notesColumnHeader.Text = "Примечания";
+            this.notesColumnHeader.Width = 150;
+            // 
+            // costColumnHeader
+            // 
+            this.costColumnHeader.Text = "Стоимость (руб)";
+            this.costColumnHeader.Width = 100;
+            // 
+            // repairTypeNotesColumnHeader
+            // 
+            this.repairTypeNotesColumnHeader.Text = "Примечания";
+            this.repairTypeNotesColumnHeader.Width = 150;
+            // 
+            // durationColumnHeader
+            // 
+            this.durationColumnHeader.Text = "Продолжительность";
+            this.durationColumnHeader.Width = 150;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(882, 503);
+            this.ClientSize = new System.Drawing.Size(905, 406);
+            this.Controls.Add(this.tabControl);
             this.Controls.Add(this.menuStrip);
             this.MainMenuStrip = this.menuStrip;
             this.Name = "MainForm";
@@ -110,19 +327,45 @@ namespace MTM_Forms
             this.Text = "Техническое обслуживание станков";
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
+            this.tabControl.ResumeLayout(false);
+            this.machineToolTypeTabPage.ResumeLayout(false);
+            this.repairTypeTabPage.ResumeLayout(false);
+            this.repairTabPage.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private MenuStrip menuStrip;
         private ToolStripMenuItem machineToolTypeToolStripMenuItem;
-        private ToolStripMenuItem repairTypeToolStripMenuItem;
         private ToolStripMenuItem addMachineToolTypeToolStripMenuItem;
         private ToolStripMenuItem editMachineToolTypeToolStripMenuItem;
+        private ToolStripMenuItem repairTypeToolStripMenuItem;
         private ToolStripMenuItem addRepairTypeToolStripMenuItem;
         private ToolStripMenuItem editRepairTypeToolStripMenuItem;
+        private ToolStripMenuItem repairToolStripMenuItem;
+        private ToolStripMenuItem addRepairToolStripMenuItem;
+        private ToolStripMenuItem editRepairToolStripMenuItem;
+        private MenuStrip menuStrip;
+        private TabControl tabControl;
+        private TabPage machineToolTypeTabPage;
+        private TabPage repairTypeTabPage;
+        private ListView machineToolTypeListView;
+        private TabPage repairTabPage;
+        private ListView repairTypeListView;
+        private ListView repairListView;
+        private ColumnHeader nameColumnHeader;
+        private ColumnHeader repairTypeNameColumnHeader;
+        private ColumnHeader machineToolTypeIdColumnHeader;
+        private ColumnHeader startDateColumnHeader;
+        private ColumnHeader notesColumnHeader;
+        private ColumnHeader IdColumnHeader;
+        private ColumnHeader countryColumnHeader;
+        private ColumnHeader yearOfManufactureColumnHeader2;
+        private ColumnHeader brandColumnHeader;
+        private ColumnHeader warrantyColumnHeader;
+        private ColumnHeader costColumnHeader;
+        private ColumnHeader repairTypeNotesColumnHeader;
+        private ColumnHeader durationColumnHeader;
     }
 }

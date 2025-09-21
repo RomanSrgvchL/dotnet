@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.PerformanceData;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,11 +18,6 @@ namespace MTM_Forms
         public MachineToolTypeForm(MachineToolType machineTooltype)
         {
             InitializeComponent();
-
-            if (machineTooltype == null)
-            {
-                return;
-            }
 
             MachineToolType = machineTooltype;
             
@@ -42,16 +38,24 @@ namespace MTM_Forms
             brandComboBox.SelectedItem = MachineToolType.Brand;
 
             yearOfManufactureNumericUpDown.Value = MachineToolType.YearOfManufacture;
-
             warrantyNumericUpDown.Value = MachineToolType.Warranty;
         }
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            MachineToolType.Country = (Country) countryComboBox.SelectedItem;
-            MachineToolType.YearOfManufacture = (int) yearOfManufactureNumericUpDown.Value;
-            MachineToolType.Brand = (Brand) brandComboBox.SelectedItem;
-            MachineToolType.Warranty = (int) warrantyNumericUpDown.Value;
+            if (countryComboBox.SelectedItem != null && brandComboBox.SelectedItem != null)
+            {
+                MachineToolType.Country = (Country) countryComboBox.SelectedItem;
+                MachineToolType.YearOfManufacture = (int) yearOfManufactureNumericUpDown.Value;
+                MachineToolType.Brand = (Brand) brandComboBox.SelectedItem;
+                MachineToolType.Warranty = (int) warrantyNumericUpDown.Value;
+            }
+            else
+            {
+                MessageBox.Show("Не указано значение в выпадащем списке", "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                DialogResult = DialogResult.Cancel;
+            }
         }
     }
 }
