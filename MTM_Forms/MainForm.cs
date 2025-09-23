@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,46 +14,27 @@ namespace MTM_Forms
 {
     public partial class MainForm : Form
     {
+        private readonly Storage _storage = Storage.Instance;
+        readonly MachineToolTypeForm _machineToolTypeForm = new MachineToolTypeForm();
+        readonly RepairTypeForm _repairTypeForm = new RepairTypeForm();
+        readonly RepairForm _repairForm = new RepairForm();
+
         public MainForm()
         {
             InitializeComponent();
+            _storage.MachineToolTypeAdded += _storage_MachineToolTypeAdded;
+            _storage.RepairTypeAdded += _storage_RepairTypeAdded;
+            _storage.RepairAdded += _storage_RepairAdded;
+            _storage.MachineToolTypeRemoved += _storage_MachineToolTypeRemoved;
+            _storage.RepairTypeRemoved += _storage_RepairTypeRemoved;
+            _storage.RepairRemoved += _storage_RepairRemoved;
         }
 
-        private void addMachineToolTypeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void _storage_MachineToolTypeAdded(object sender, EventArgs e)
         {
-            var machineToolType = new MachineToolType();
-            MachineToolTypeForm machineToolTypeForm = new MachineToolTypeForm(machineToolType);
-            if (machineToolTypeForm.ShowDialog() == DialogResult.OK)
+            var machineToolType = sender as MachineToolType;
+            if (machineToolType != null)
             {
-                Storage.MachineToolTypes.Add(machineToolType.Id, machineToolType);
-                updateMachineToolTypesList();
-            }
-        }
-
-        private void editMachineToolTypeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (machineToolTypeListView.SelectedItems.Count > 0)
-            {
-                var machineToolType = machineToolTypeListView.SelectedItems[0].Tag as MachineToolType;
-                MachineToolTypeForm machineToolTypeForm = new MachineToolTypeForm(machineToolType);
-                if (machineToolTypeForm.ShowDialog() == DialogResult.OK)
-                {
-                    updateMachineToolTypesList();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Выберите элемент из списка", "Ошибка", 
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
-        private void updateMachineToolTypesList()
-        {
-            machineToolTypeListView.Items.Clear();
-            foreach (var item in Storage.MachineToolTypes)
-            {
-                var machineToolType = item.Value;
                 var listViewItem = new ListViewItem
                 {
                     Tag = machineToolType,
@@ -66,42 +48,11 @@ namespace MTM_Forms
             }
         }
 
-        private void addRepairTypeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void _storage_RepairTypeAdded(object sender, EventArgs e)
         {
-            var repairType = new RepairType();
-            RepairTypeForm repairTypeForm = new RepairTypeForm(repairType);
-            if (repairTypeForm.ShowDialog() == DialogResult.OK)
+            var repairType = sender as RepairType;
+            if (repairType != null)
             {
-                Storage.RepairTypes.Add(repairType.Name, repairType);
-                updateRepairTypesList();
-            }
-        }
-
-        private void editRepairTypeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (repairTypeListView.SelectedItems.Count > 0)
-            {
-                var repairType = repairTypeListView.SelectedItems[0].Tag as RepairType;
-                RepairTypeForm repairTypeForm = new RepairTypeForm(repairType);
-                if (repairTypeForm.ShowDialog() == DialogResult.OK)
-                {
-                    updateRepairTypesList();
-                    updateRepairsList();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Выберите элемент из списка", "Ошибка", 
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
-        private void updateRepairTypesList()
-        {
-            repairTypeListView.Items.Clear();
-            foreach (var item in Storage.RepairTypes)
-            {
-                var repairType = item.Value;
                 var listViewItem = new ListViewItem
                 {
                     Tag = repairType,
@@ -114,39 +65,11 @@ namespace MTM_Forms
             }
         }
 
-        private void addRepairToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var repair = new Repair();
-            RepairForm repairForm = new RepairForm(repair);
-            if (repairForm.ShowDialog() == DialogResult.OK)
-            {
-                Storage.Repairs.Add(repair);
-                updateRepairsList();
-            }
-        }
 
-        private void editRepairToolStripMenuItem_Click(object sender, EventArgs e)
+        private void _storage_RepairAdded(object sender, EventArgs e)
         {
-            if (repairListView.SelectedItems.Count > 0)
-            {
-                var repair = repairListView.SelectedItems[0].Tag as Repair;
-                RepairForm repairForm = new RepairForm(repair);
-                if (repairForm.ShowDialog() == DialogResult.OK)
-                {
-                    updateRepairsList();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Выберите элемент из списка", "Ошибка",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
-        private void updateRepairsList()
-        {
-            repairListView.Items.Clear();
-            foreach (var repair in Storage.Repairs)
+            var repair = sender as Repair;
+            if (repair != null)
             {
                 var listViewItem = new ListViewItem
                 {
@@ -157,6 +80,228 @@ namespace MTM_Forms
                 listViewItem.SubItems.Add(repair.StartDate.ToShortDateString());
                 listViewItem.SubItems.Add(repair.Notes);
                 repairListView.Items.Add(listViewItem);
+            }
+        }
+
+        private void _storage_MachineToolTypeRemoved(object sender, EventArgs e)
+        {
+            var machineToolTypeId = (int)sender;
+            for (int i = 0; i < machineToolTypeListView.Items.Count; i++)
+            {
+                if (((MachineToolType)machineToolTypeListView.Items[i].Tag).Id == machineToolTypeId)
+                {
+                    machineToolTypeListView.Items.RemoveAt(i);
+                    break;
+                }
+            }
+        }
+
+        private void _storage_RepairTypeRemoved(object sender, EventArgs e)
+        {
+            var repairTypeName = (string)sender;
+            for (int i = 0; i < repairTypeListView.Items.Count; i++)
+            {
+                if (((RepairType)repairTypeListView.Items[i].Tag).Name == repairTypeName)
+                {
+                    repairTypeListView.Items.RemoveAt(i);
+                    break;
+                }
+            }
+        }
+
+        private void _storage_RepairRemoved(object sender, EventArgs e)
+        {
+            var repair = sender as Repair;
+            for (int i = 0; i < repairListView.Items.Count; i++)
+            {
+                if ((Repair)repairListView.Items[i].Tag == repair)
+                {
+                    repairListView.Items.RemoveAt(i);
+                    break;
+                }
+            }
+        }
+
+        private void addMachineToolTypeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var machineToolType = new MachineToolType();
+            _machineToolTypeForm.MachineToolType = machineToolType;
+            if (_machineToolTypeForm.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    _storage.AddMachineToolType(machineToolType);
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.Message, "Ошибка",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
+        
+        private void editMachineToolTypeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (machineToolTypeListView.SelectedItems.Count > 0)
+            {
+                var machineToolType = machineToolTypeListView.SelectedItems[0].Tag as MachineToolType;
+                _machineToolTypeForm.MachineToolType = machineToolType;
+                if (_machineToolTypeForm.ShowDialog() == DialogResult.OK)
+                {
+                    var item = machineToolTypeListView.SelectedItems[0];
+                    item.Text = _machineToolTypeForm.MachineToolType.Id.ToString();
+                    item.SubItems[1].Text = _machineToolTypeForm.MachineToolType.Country.ToString();
+                    item.SubItems[2].Text = _machineToolTypeForm.MachineToolType.YearOfManufacture.ToString();
+                    item.SubItems[3].Text = _machineToolTypeForm.MachineToolType.Brand.ToString();
+                    item.SubItems[4].Text = _machineToolTypeForm.MachineToolType.Warranty.ToString(); 
+                }
+            }
+            else
+            {
+                MessageBox.Show("Выберите элемент из списка", "Ошибка", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void addRepairTypeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var repairType = new RepairType();
+            _repairTypeForm.RepairType = repairType;
+            if (_repairTypeForm.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    _storage.AddRepairType(repairType);
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.Message, "Ошибка",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
+
+        private void editRepairTypeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (repairTypeListView.SelectedItems.Count > 0)
+            {
+                var repairType = repairTypeListView.SelectedItems[0].Tag as RepairType;
+                _repairTypeForm.RepairType = repairType;
+                if (_repairTypeForm.ShowDialog() == DialogResult.OK)
+                {
+                    var item = repairTypeListView.SelectedItems[0];
+                    item.Text = _repairTypeForm.RepairType.Name;
+                    item.SubItems[1].Text = _repairTypeForm.RepairType.Duration.ToString(@"d\:hh\:mm");
+                    item.SubItems[2].Text = _repairTypeForm.RepairType.Cost.ToString();
+                    item.SubItems[3].Text = _repairTypeForm.RepairType.Notes.ToString();
+
+                    // Обновляем имя этого типа ремонта во вкладке ремонтов
+                    foreach (ListViewItem repairItem in repairListView.Items)
+                    {
+                        if (repairItem.Tag is Repair repair && repair.RepairType == repairType)
+                        {
+                            repairItem.SubItems[1].Text = _repairTypeForm.RepairType.Name;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Выберите элемент из списка", "Ошибка", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void addRepairToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var repair = new Repair();
+            _repairForm.Repair = repair;
+            if (_repairForm.ShowDialog() == DialogResult.OK)
+            {
+                _storage.AddRepair(repair);
+            }
+        }
+
+        private void editRepairToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (repairListView.SelectedItems.Count > 0)
+            {
+                var repair = repairListView.SelectedItems[0].Tag as Repair;
+                _repairForm.Repair = repair;
+                if (_repairForm.ShowDialog() == DialogResult.OK)
+                {
+                    var item = repairListView.SelectedItems[0];
+                    item.Text = _repairForm.Repair.MachineToolType.Id.ToString();
+                    item.SubItems[1].Text = _repairForm.Repair.RepairType.Name;
+                    item.SubItems[2].Text = _repairForm.Repair.StartDate.ToShortDateString();
+                    item.SubItems[3].Text = _repairForm.Repair.Notes.ToString();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Выберите элемент из списка", "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void machineToolTypeListView_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                try
+                {
+                    var machineToolType = machineToolTypeListView.SelectedItems[0].Tag as MachineToolType;
+                    if (machineToolType != null)
+                    {
+                        _storage.RemoveMachineToolType(machineToolType.Id);
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Выберите элемент из списка", "Ошибка",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
+
+        private void repairTypeListView_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                try
+                {
+                    var repairType = repairTypeListView.SelectedItems[0].Tag as RepairType;
+                    if (repairType != null)
+                    {
+                        _storage.RemoveRepairType(repairType.Name);
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Выберите элемент из списка", "Ошибка",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+
+        }
+
+        private void repairListView_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                try
+                {
+                    var repair = repairListView.SelectedItems[0].Tag as Repair;
+                    if (repair != null)
+                    {
+                        _storage.RemoveRepair(repair);
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Выберите элемент из списка", "Ошибка",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
     }

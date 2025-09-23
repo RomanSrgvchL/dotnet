@@ -48,6 +48,9 @@
   <ItemGroup>
     <Compile Include="enums\Brand.cs" />
     <Compile Include="enums\Country.cs" />
+    <Compile Include="exception\InvalidMachineToolTypeException.cs" />
+    <Compile Include="exception\InvalidRepairException.cs" />
+    <Compile Include="exception\InvalidRepairTypeException.cs" />
     <Compile Include="IValidatable.cs" />
     <Compile Include="Storage.cs" />
     <Compile Include="MachineToolType.cs" />

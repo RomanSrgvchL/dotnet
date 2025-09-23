@@ -13,27 +13,36 @@ namespace MTM_Forms
 {
     public partial class RepairTypeForm : Form
     {
-        public RepairType RepairType { get; }
-        
-        public RepairTypeForm(RepairType repairType)
+        private RepairType _repairType;
+        public RepairType RepairType
+        {
+            get
+            {
+                return _repairType;
+            }
+            set
+            {
+                _repairType = value;
+
+                nameTextBox.Text = _repairType.Name;
+                daysNumericUpDown.Value = _repairType.Duration.Days;
+                hoursNumericUpDown.Value = _repairType.Duration.Hours;
+                minutesNumericUpDown.Value = _repairType.Duration.Minutes;
+                costNumericUpDown.Value = _repairType.Cost;
+                notesTextBox.Text = _repairType.Notes;
+            }
+        }
+
+        public RepairTypeForm()
         {
             InitializeComponent();
-
-            RepairType = repairType;
-
-            nameTextBox.Text = RepairType.Name;
-            daysNumericUpDown.Value = RepairType.Duration.Days;
-            hoursNumericUpDown.Value = RepairType.Duration.Hours;
-            minutesNumericUpDown.Value = RepairType.Duration.Minutes;
-            costNumericUpDown.Value = RepairType.Cost;
-            notesTextBox.Text = RepairType.Notes;
         }
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            foreach (var repairType in Storage.RepairTypes)
+            foreach (var repairType in Storage.Instance.RepairTypes)
             {
-                if (repairType.Value.Name.Equals(nameTextBox.Text.Trim()) && RepairType != repairType.Value)
+                if (repairType.Name.Equals(nameTextBox.Text.Trim()) && RepairType != repairType)
                 {
                     MessageBox.Show("Ремонт с таким названием уже существует", "Ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -42,11 +51,11 @@ namespace MTM_Forms
                 }
             }
 
-            RepairType.Name = nameTextBox.Text.Trim();
-            RepairType.Duration = new TimeSpan((int)daysNumericUpDown.Value, (int)hoursNumericUpDown.Value,
+            _repairType.Name = nameTextBox.Text.Trim();
+            _repairType.Duration = new TimeSpan((int)daysNumericUpDown.Value, (int)hoursNumericUpDown.Value,
                 (int)minutesNumericUpDown.Value, 0);
-            RepairType.Cost = (int)costNumericUpDown.Value;
-            RepairType.Notes = notesTextBox.Text;
+            _repairType.Cost = (int)costNumericUpDown.Value;
+            _repairType.Notes = notesTextBox.Text;
         }
     }
 }

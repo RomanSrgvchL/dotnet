@@ -51,15 +51,15 @@ namespace MTM_Forms
             this.repairTypeTabPage = new System.Windows.Forms.TabPage();
             this.repairTypeListView = new System.Windows.Forms.ListView();
             this.nameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.durationColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.costColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.repairTypeNotesColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.repairTabPage = new System.Windows.Forms.TabPage();
             this.repairListView = new System.Windows.Forms.ListView();
             this.machineToolTypeIdColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.repairTypeNameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.startDateColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.notesColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.costColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.repairTypeNotesColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.durationColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.machineToolTypeTabPage.SuspendLayout();
@@ -190,6 +190,7 @@ namespace MTM_Forms
             this.machineToolTypeListView.TabIndex = 1;
             this.machineToolTypeListView.UseCompatibleStateImageBehavior = false;
             this.machineToolTypeListView.View = System.Windows.Forms.View.Details;
+            this.machineToolTypeListView.KeyUp += new System.Windows.Forms.KeyEventHandler(this.machineToolTypeListView_KeyUp);
             // 
             // IdColumnHeader
             // 
@@ -244,11 +245,27 @@ namespace MTM_Forms
             this.repairTypeListView.TabIndex = 0;
             this.repairTypeListView.UseCompatibleStateImageBehavior = false;
             this.repairTypeListView.View = System.Windows.Forms.View.Details;
+            this.repairTypeListView.KeyUp += new System.Windows.Forms.KeyEventHandler(this.repairTypeListView_KeyUp);
             // 
             // nameColumnHeader
             // 
             this.nameColumnHeader.Text = "Название ремонта";
             this.nameColumnHeader.Width = 200;
+            // 
+            // durationColumnHeader
+            // 
+            this.durationColumnHeader.Text = "Продолжительность";
+            this.durationColumnHeader.Width = 150;
+            // 
+            // costColumnHeader
+            // 
+            this.costColumnHeader.Text = "Стоимость (руб)";
+            this.costColumnHeader.Width = 100;
+            // 
+            // repairTypeNotesColumnHeader
+            // 
+            this.repairTypeNotesColumnHeader.Text = "Примечания";
+            this.repairTypeNotesColumnHeader.Width = 150;
             // 
             // repairTabPage
             // 
@@ -278,6 +295,7 @@ namespace MTM_Forms
             this.repairListView.TabIndex = 0;
             this.repairListView.UseCompatibleStateImageBehavior = false;
             this.repairListView.View = System.Windows.Forms.View.Details;
+            this.repairListView.KeyUp += new System.Windows.Forms.KeyEventHandler(this.repairListView_KeyUp);
             // 
             // machineToolTypeIdColumnHeader
             // 
@@ -298,21 +316,6 @@ namespace MTM_Forms
             // 
             this.notesColumnHeader.Text = "Примечания";
             this.notesColumnHeader.Width = 150;
-            // 
-            // costColumnHeader
-            // 
-            this.costColumnHeader.Text = "Стоимость (руб)";
-            this.costColumnHeader.Width = 100;
-            // 
-            // repairTypeNotesColumnHeader
-            // 
-            this.repairTypeNotesColumnHeader.Text = "Примечания";
-            this.repairTypeNotesColumnHeader.Width = 150;
-            // 
-            // durationColumnHeader
-            // 
-            this.durationColumnHeader.Text = "Продолжительность";
-            this.durationColumnHeader.Width = 150;
             // 
             // MainForm
             // 

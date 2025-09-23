@@ -1,4 +1,6 @@
-﻿namespace MTM_Forms
+﻿using System.Windows.Forms;
+
+namespace MTM_Forms
 {
     partial class RepairForm
     {
@@ -71,14 +73,16 @@
             this.machineToolTypeComboBox.FormattingEnabled = true;
             this.machineToolTypeComboBox.Location = new System.Drawing.Point(236, 21);
             this.machineToolTypeComboBox.Name = "machineToolTypeComboBox";
+            this.machineToolTypeComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             this.machineToolTypeComboBox.Size = new System.Drawing.Size(295, 24);
             this.machineToolTypeComboBox.TabIndex = 3;
             // 
             // repairTypeComboBox
-            // 
+            //  
             this.repairTypeComboBox.FormattingEnabled = true;
             this.repairTypeComboBox.Location = new System.Drawing.Point(236, 72);
             this.repairTypeComboBox.Name = "repairTypeComboBox";
+            this.repairTypeComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             this.repairTypeComboBox.Size = new System.Drawing.Size(295, 24);
             this.repairTypeComboBox.TabIndex = 4;
             // 

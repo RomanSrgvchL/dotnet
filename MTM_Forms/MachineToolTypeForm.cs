@@ -14,41 +14,52 @@ namespace MTM_Forms
 {
     public partial class MachineToolTypeForm : Form
     {
-        public MachineToolType MachineToolType { get; }
-        public MachineToolTypeForm(MachineToolType machineTooltype)
+        private MachineToolType _machineToolType;
+        public MachineToolType MachineToolType {
+            get 
+            { 
+                return _machineToolType; 
+            }
+            set
+            {
+                _machineToolType = value;
+
+                countryComboBox.Items.Clear();
+                countryComboBox.Items.Add(Country.Russia);
+                countryComboBox.Items.Add(Country.USA);
+                countryComboBox.Items.Add(Country.China);
+                countryComboBox.Items.Add(Country.Germany);
+                countryComboBox.SelectedItem = _machineToolType.Country;
+
+                brandComboBox.Items.Clear();
+                brandComboBox.Items.Add(Brand.Stankoinstrument);
+                brandComboBox.Items.Add(Brand.KrasnyProletary);
+                brandComboBox.Items.Add(Brand.Haas);
+                brandComboBox.Items.Add(Brand.Hardinge);
+                brandComboBox.Items.Add(Brand.Dalian);
+                brandComboBox.Items.Add(Brand.Jier);
+                brandComboBox.Items.Add(Brand.Siemens);
+                brandComboBox.Items.Add(Brand.DeckelMaho);
+                brandComboBox.SelectedItem = _machineToolType.Brand;
+
+                yearOfManufactureNumericUpDown.Value = _machineToolType.YearOfManufacture;
+                warrantyNumericUpDown.Value = _machineToolType.Warranty;
+            }
+        }
+
+        public MachineToolTypeForm()
         {
             InitializeComponent();
-
-            MachineToolType = machineTooltype;
-            
-            countryComboBox.Items.Add(Country.Russia);
-            countryComboBox.Items.Add(Country.USA);
-            countryComboBox.Items.Add(Country.China);
-            countryComboBox.Items.Add(Country.Germany);
-            countryComboBox.SelectedItem = MachineToolType.Country;
-
-            brandComboBox.Items.Add(Brand.Stankoinstrument);
-            brandComboBox.Items.Add(Brand.KrasnyProletary);
-            brandComboBox.Items.Add(Brand.Haas);
-            brandComboBox.Items.Add(Brand.Hardinge);
-            brandComboBox.Items.Add(Brand.Dalian);
-            brandComboBox.Items.Add(Brand.Jier);
-            brandComboBox.Items.Add(Brand.Siemens);
-            brandComboBox.Items.Add(Brand.DeckelMaho);
-            brandComboBox.SelectedItem = MachineToolType.Brand;
-
-            yearOfManufactureNumericUpDown.Value = MachineToolType.YearOfManufacture;
-            warrantyNumericUpDown.Value = MachineToolType.Warranty;
         }
 
         private void saveButton_Click(object sender, EventArgs e)
         {
             if (countryComboBox.SelectedItem != null && brandComboBox.SelectedItem != null)
             {
-                MachineToolType.Country = (Country) countryComboBox.SelectedItem;
-                MachineToolType.YearOfManufacture = (int) yearOfManufactureNumericUpDown.Value;
-                MachineToolType.Brand = (Brand) brandComboBox.SelectedItem;
-                MachineToolType.Warranty = (int) warrantyNumericUpDown.Value;
+                _machineToolType.Country = (Country) countryComboBox.SelectedItem;
+                _machineToolType.YearOfManufacture = (int) yearOfManufactureNumericUpDown.Value;
+                _machineToolType.Brand = (Brand) brandComboBox.SelectedItem;
+                _machineToolType.Warranty = (int) warrantyNumericUpDown.Value;
             }
             else
             {
