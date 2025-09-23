@@ -1,4 +1,6 @@
-﻿namespace MTM_Forms
+﻿using System.Windows.Forms;
+
+namespace MTM_Forms
 {
     partial class MachineToolTypeForm
     {
@@ -84,6 +86,7 @@
             this.countryComboBox.FormattingEnabled = true;
             this.countryComboBox.Location = new System.Drawing.Point(287, 63);
             this.countryComboBox.Name = "countryComboBox";
+            this.countryComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             this.countryComboBox.Size = new System.Drawing.Size(121, 24);
             this.countryComboBox.TabIndex = 7;
             // 
@@ -92,6 +95,7 @@
             this.brandComboBox.FormattingEnabled = true;
             this.brandComboBox.Location = new System.Drawing.Point(287, 165);
             this.brandComboBox.Name = "brandComboBox";
+            this.brandComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             this.brandComboBox.Size = new System.Drawing.Size(121, 24);
             this.brandComboBox.TabIndex = 8;
             // 
