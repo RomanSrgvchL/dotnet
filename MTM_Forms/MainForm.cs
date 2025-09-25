@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MachineToolMaintenance;
+using MTM_FormsControlLibrary;
 
 namespace MTM_Forms
 {
@@ -65,21 +66,16 @@ namespace MTM_Forms
             }
         }
 
-
         private void _storage_RepairAdded(object sender, EventArgs e)
         {
             var repair = sender as Repair;
             if (repair != null)
             {
-                var listViewItem = new ListViewItem
+                UserControrRepair userControlRepair = new UserControrRepair(repair)
                 {
-                    Tag = repair,
-                    Text = repair.MachineToolType.Id.ToString()
-                };
-                listViewItem.SubItems.Add(repair.RepairType.Name);
-                listViewItem.SubItems.Add(repair.StartDate.ToShortDateString());
-                listViewItem.SubItems.Add(repair.Notes);
-                repairListView.Items.Add(listViewItem);
+                    Dock = DockStyle.Top
+                }; 
+                repairTabPage.Controls.Add(userControlRepair);
             }
         }
 
@@ -112,11 +108,11 @@ namespace MTM_Forms
         private void _storage_RepairRemoved(object sender, EventArgs e)
         {
             var repair = sender as Repair;
-            for (int i = 0; i < repairListView.Items.Count; i++)
+            for (int i = 0; i < repairTabPage.Controls.Count; i++)
             {
-                if ((Repair)repairListView.Items[i].Tag == repair)
+                if ((repairTabPage.Controls[i] as UserControrRepair)?.Repair == repair)
                 {
-                    repairListView.Items.RemoveAt(i);
+                    repairTabPage.Controls.RemoveAt(i);
                     break;
                 }
             }
@@ -196,11 +192,15 @@ namespace MTM_Forms
                     item.SubItems[3].Text = _repairTypeForm.RepairType.Notes.ToString();
 
                     // Обновляем имя этого типа ремонта во вкладке ремонтов
-                    foreach (ListViewItem repairItem in repairListView.Items)
+                    for (int i = 0; i < repairTabPage.Controls.Count; i++)
                     {
-                        if (repairItem.Tag is Repair repair && repair.RepairType == repairType)
+                        var userControl = repairTabPage.Controls[i] as UserControrRepair;
+                        if (userControl != null)
                         {
-                            repairItem.SubItems[1].Text = _repairTypeForm.RepairType.Name;
+                            if (userControl.Repair.RepairType == repairType)
+                            {
+                                userControl.Refresh();
+                            }
                         }
                     }
                 }
@@ -224,20 +224,27 @@ namespace MTM_Forms
 
         private void editRepairToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (repairListView.SelectedItems.Count > 0)
+            try
             {
-                var repair = repairListView.SelectedItems[0].Tag as Repair;
-                _repairForm.Repair = repair;
-                if (_repairForm.ShowDialog() == DialogResult.OK)
+                for (int i = 0; i < repairTabPage.Controls.Count; i++)
                 {
-                    var item = repairListView.SelectedItems[0];
-                    item.Text = _repairForm.Repair.MachineToolType.Id.ToString();
-                    item.SubItems[1].Text = _repairForm.Repair.RepairType.Name;
-                    item.SubItems[2].Text = _repairForm.Repair.StartDate.ToShortDateString();
-                    item.SubItems[3].Text = _repairForm.Repair.Notes.ToString();
+                    var userControl = repairTabPage.Controls[i] as UserControrRepair;
+                    if (userControl != null)
+                    {
+                        if (userControl.Selected)
+                        {
+                            var repair = userControl.Repair;
+                            _repairForm.Repair = repair;
+                            if (_repairForm.ShowDialog() == DialogResult.OK)
+                            {
+                                userControl.Refresh();
+                            }
+                            break;
+                        }
+                    }
                 }
             }
-            else
+            catch
             {
                 MessageBox.Show("Выберите элемент из списка", "Ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -283,26 +290,6 @@ namespace MTM_Forms
                 }
             }
 
-        }
-
-        private void repairListView_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Delete)
-            {
-                try
-                {
-                    var repair = repairListView.SelectedItems[0].Tag as Repair;
-                    if (repair != null)
-                    {
-                        _storage.RemoveRepair(repair);
-                    }
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Выберите элемент из списка", "Ошибка",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
         }
     }
 }

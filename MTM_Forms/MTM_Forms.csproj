@@ -126,6 +126,10 @@
       <Project>{c855e334-d558-445e-ad58-1b8c1654e55a}</Project>
       <Name>MachineToolMaintenance</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MTM_FormsControlLibrary\MTM_FormsControlLibrary.csproj">
+      <Project>{eb194711-63c9-4bfb-b986-2764f4776af1}</Project>
+      <Name>MTM_FormsControlLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">

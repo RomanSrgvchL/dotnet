@@ -55,16 +55,10 @@ namespace MTM_Forms
             this.costColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.repairTypeNotesColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.repairTabPage = new System.Windows.Forms.TabPage();
-            this.repairListView = new System.Windows.Forms.ListView();
-            this.machineToolTypeIdColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.repairTypeNameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.startDateColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.notesColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.machineToolTypeTabPage.SuspendLayout();
             this.repairTypeTabPage.SuspendLayout();
-            this.repairTabPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // machineToolTypeToolStripMenuItem
@@ -145,7 +139,7 @@ namespace MTM_Forms
             this.repairToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(905, 28);
+            this.menuStrip.Size = new System.Drawing.Size(905, 30);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "menuStrip";
             // 
@@ -155,10 +149,10 @@ namespace MTM_Forms
             this.tabControl.Controls.Add(this.repairTypeTabPage);
             this.tabControl.Controls.Add(this.repairTabPage);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl.Location = new System.Drawing.Point(0, 28);
+            this.tabControl.Location = new System.Drawing.Point(0, 30);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(905, 378);
+            this.tabControl.Size = new System.Drawing.Size(905, 376);
             this.tabControl.TabIndex = 2;
             // 
             // machineToolTypeTabPage
@@ -167,7 +161,7 @@ namespace MTM_Forms
             this.machineToolTypeTabPage.Location = new System.Drawing.Point(4, 25);
             this.machineToolTypeTabPage.Name = "machineToolTypeTabPage";
             this.machineToolTypeTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.machineToolTypeTabPage.Size = new System.Drawing.Size(897, 349);
+            this.machineToolTypeTabPage.Size = new System.Drawing.Size(897, 347);
             this.machineToolTypeTabPage.TabIndex = 0;
             this.machineToolTypeTabPage.Text = "Тип станка";
             this.machineToolTypeTabPage.UseVisualStyleBackColor = true;
@@ -186,7 +180,7 @@ namespace MTM_Forms
             this.machineToolTypeListView.HideSelection = false;
             this.machineToolTypeListView.Location = new System.Drawing.Point(3, 3);
             this.machineToolTypeListView.Name = "machineToolTypeListView";
-            this.machineToolTypeListView.Size = new System.Drawing.Size(891, 343);
+            this.machineToolTypeListView.Size = new System.Drawing.Size(891, 341);
             this.machineToolTypeListView.TabIndex = 1;
             this.machineToolTypeListView.UseCompatibleStateImageBehavior = false;
             this.machineToolTypeListView.View = System.Windows.Forms.View.Details;
@@ -269,7 +263,6 @@ namespace MTM_Forms
             // 
             // repairTabPage
             // 
-            this.repairTabPage.Controls.Add(this.repairListView);
             this.repairTabPage.Location = new System.Drawing.Point(4, 25);
             this.repairTabPage.Name = "repairTabPage";
             this.repairTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -277,45 +270,6 @@ namespace MTM_Forms
             this.repairTabPage.TabIndex = 2;
             this.repairTabPage.Text = "Ремонты";
             this.repairTabPage.UseVisualStyleBackColor = true;
-            // 
-            // repairListView
-            // 
-            this.repairListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.machineToolTypeIdColumnHeader,
-            this.repairTypeNameColumnHeader,
-            this.startDateColumnHeader,
-            this.notesColumnHeader});
-            this.repairListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.repairListView.FullRowSelect = true;
-            this.repairListView.GridLines = true;
-            this.repairListView.HideSelection = false;
-            this.repairListView.Location = new System.Drawing.Point(3, 3);
-            this.repairListView.Name = "repairListView";
-            this.repairListView.Size = new System.Drawing.Size(891, 343);
-            this.repairListView.TabIndex = 0;
-            this.repairListView.UseCompatibleStateImageBehavior = false;
-            this.repairListView.View = System.Windows.Forms.View.Details;
-            this.repairListView.KeyUp += new System.Windows.Forms.KeyEventHandler(this.repairListView_KeyUp);
-            // 
-            // machineToolTypeIdColumnHeader
-            // 
-            this.machineToolTypeIdColumnHeader.Text = "ID типа станка";
-            this.machineToolTypeIdColumnHeader.Width = 100;
-            // 
-            // repairTypeNameColumnHeader
-            // 
-            this.repairTypeNameColumnHeader.Text = "Название ремонта";
-            this.repairTypeNameColumnHeader.Width = 200;
-            // 
-            // startDateColumnHeader
-            // 
-            this.startDateColumnHeader.Text = "Дата начала ремонта";
-            this.startDateColumnHeader.Width = 150;
-            // 
-            // notesColumnHeader
-            // 
-            this.notesColumnHeader.Text = "Примечания";
-            this.notesColumnHeader.Width = 150;
             // 
             // MainForm
             // 
@@ -333,7 +287,6 @@ namespace MTM_Forms
             this.tabControl.ResumeLayout(false);
             this.machineToolTypeTabPage.ResumeLayout(false);
             this.repairTypeTabPage.ResumeLayout(false);
-            this.repairTabPage.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -356,12 +309,7 @@ namespace MTM_Forms
         private ListView machineToolTypeListView;
         private TabPage repairTabPage;
         private ListView repairTypeListView;
-        private ListView repairListView;
         private ColumnHeader nameColumnHeader;
-        private ColumnHeader repairTypeNameColumnHeader;
-        private ColumnHeader machineToolTypeIdColumnHeader;
-        private ColumnHeader startDateColumnHeader;
-        private ColumnHeader notesColumnHeader;
         private ColumnHeader IdColumnHeader;
         private ColumnHeader countryColumnHeader;
         private ColumnHeader yearOfManufactureColumnHeader2;
