@@ -93,7 +93,7 @@ namespace MachineToolMaintenance
         {
             if (!machineToolType.IsValid)
             {
-                throw new exception.InvalidMachineToolTypeException("Информация о типе станка заполнена некорректно");
+                throw new Exception.InvalidMachineToolTypeException("Информация о типе станка заполнена некорректно");
             }
             try
             {
@@ -101,9 +101,9 @@ namespace MachineToolMaintenance
                 // Герерируем событие о том, что тип ремонта добавлен
                 MachineToolTypeAdded?.Invoke(machineToolType, EventArgs.Empty);
             }
-            catch (Exception exception)
+            catch (System.Exception exception)
             {
-                throw new exception.InvalidMachineToolTypeException("При добавлении типа станка произошла ошибка", 
+                throw new Exception.InvalidMachineToolTypeException("При добавлении типа станка произошла ошибка", 
                     exception);
             }
         }
@@ -116,7 +116,7 @@ namespace MachineToolMaintenance
         {
             if (!repairType.IsValid)
             {
-                throw new exception.InvalidRepairTypeException("Информация о типе ремонта заполнена некорректно");
+                throw new Exception.InvalidRepairTypeException("Информация о типе ремонта заполнена некорректно");
             }
             try
             {
@@ -124,9 +124,9 @@ namespace MachineToolMaintenance
                 // Герерируем событие о том, что тип ремонта добавлен
                 RepairTypeAdded?.Invoke(repairType, EventArgs.Empty);
             }
-            catch (Exception exception)
+            catch (System.Exception exception)
             {
-                throw new exception.InvalidRepairTypeException("При добавлении типа ремонта произошла ошибка", 
+                throw new Exception.InvalidRepairTypeException("При добавлении типа ремонта произошла ошибка", 
                     exception);
             }
         }
@@ -139,7 +139,7 @@ namespace MachineToolMaintenance
         {
             if (!repair.IsValid)
             {
-                throw new exception.InvalidRepairException("Информация о ремонте заполнена некорректно");
+                throw new Exception.InvalidRepairException("Информация о ремонте заполнена некорректно");
             }
             try
             {
@@ -147,9 +147,9 @@ namespace MachineToolMaintenance
                 // Герерируем событие о том, что информация о ремонте добавлена
                 RepairAdded?.Invoke(repair, EventArgs.Empty);
             }
-            catch (Exception exception)
+            catch (System.Exception exception)
             {
-                throw new exception.InvalidRepairException("При добавлении ремонта произошла ошибка", exception);
+                throw new Exception.InvalidRepairException("При добавлении ремонта произошла ошибка", exception);
             }
         }
 

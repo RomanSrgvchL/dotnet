@@ -9,26 +9,31 @@ namespace MachineToolMaintenance
     /// <summary>
     /// Тип станка
     /// </summary>
+    [Serializable]
     public class MachineToolType : IValidatable
     {
         /// </summary>
         /// Уникальный ID типа станка (аналог автоинкремента)
         /// </summary>
-        private static int _newMachineToolType = 0;
+        private static int _newMachineToolTypeId = 0;
 
-        private static int NewMachineToolType
+        public static int NewMachineToolTypeId
         {
             get
             {
-                _newMachineToolType++;
-                return _newMachineToolType;
+                _newMachineToolTypeId++;
+                return _newMachineToolTypeId;
+            }
+            set
+            {
+                _newMachineToolTypeId = value;
             }
         }
 
         /// <summary>
         /// Уникальный ID типа станка
         /// </summary>
-        public int Id { get; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Страна производителя станка
@@ -65,12 +70,11 @@ namespace MachineToolMaintenance
 
         public MachineToolType()
         {
-            Id = NewMachineToolType;
         }
 
         public MachineToolType(Country country, int yearOfManufacture, Brand brand, int warranty)
         {
-            Id = NewMachineToolType;
+            Id = NewMachineToolTypeId;
             Country = country;
             YearOfManufacture = yearOfManufacture;
             Brand = brand;

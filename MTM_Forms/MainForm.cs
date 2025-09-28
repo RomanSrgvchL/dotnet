@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MachineToolMaintenance;
+using MachineToolMaintenance.Enums;
+using MachineToolMaintenance.Serialization;
 using MTM_FormsControlLibrary;
 
 namespace MTM_Forms
@@ -121,6 +123,8 @@ namespace MTM_Forms
         private void addMachineToolTypeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var machineToolType = new MachineToolType();
+            machineToolType.Id = MachineToolType.NewMachineToolTypeId;
+
             _machineToolTypeForm.MachineToolType = machineToolType;
             if (_machineToolTypeForm.ShowDialog() == DialogResult.OK)
             {
@@ -128,7 +132,7 @@ namespace MTM_Forms
                 {
                     _storage.AddMachineToolType(machineToolType);
                 }
-                catch (Exception exception)
+                catch (System.Exception exception)
                 {
                     MessageBox.Show(exception.Message, "Ошибка",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -169,7 +173,7 @@ namespace MTM_Forms
                 {
                     _storage.AddRepairType(repairType);
                 }
-                catch (Exception exception)
+                catch (System.Exception exception)
                 {
                     MessageBox.Show(exception.Message, "Ошибка",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -290,6 +294,67 @@ namespace MTM_Forms
                 }
             }
 
+        }
+
+        private void saveXMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveFileDialogMain.Reset();
+            saveFileDialogMain.Filter = "XML-файлы|*.xml|Все файлы|*.*";
+            if (saveFileDialogMain.ShowDialog() == DialogResult.OK)
+            {
+                MTMSerializable.Save(saveFileDialogMain.FileName, SerializeType.XML);
+            }
+        }
+
+        private void saveJSONToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveFileDialogMain.Reset();
+            saveFileDialogMain.Filter = "JSON-файлы|*.json|Все файлы|*.*";
+            if (saveFileDialogMain.ShowDialog() == DialogResult.OK)
+            {
+                MTMSerializable.Save(saveFileDialogMain.FileName, SerializeType.JSON);
+            }
+        }
+
+        private void saveBinaryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveFileDialogMain.Reset();
+            saveFileDialogMain.Filter = "Двоичные файлы|*.bin|Все файлы|*.*";
+            if (saveFileDialogMain.ShowDialog() == DialogResult.OK)
+            {
+                MTMSerializable.Save(saveFileDialogMain.FileName, SerializeType.Binary);
+            }
+        }
+
+        private void loadXMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialogMain.Reset();
+            openFileDialogMain.Filter = "XML-файлы|*.xml|Все файлы|*.*";
+            if (openFileDialogMain.ShowDialog() == DialogResult.OK)
+            {
+                MTMSerializable.Load(openFileDialogMain.FileName, SerializeType.XML);
+
+            }
+        }
+
+        private void loadJSONToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialogMain.Reset();
+            openFileDialogMain.Filter = "JSON-файлы|*.json|Все файлы|*.*";
+            if (openFileDialogMain.ShowDialog() == DialogResult.OK)
+            {
+                MTMSerializable.Load(openFileDialogMain.FileName, SerializeType.JSON);
+            }
+        }
+
+        private void loadBinaryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialogMain.Reset();
+            openFileDialogMain.Filter = "Двоичные файлы|*.bin|Все файлы|*.*";
+            if (openFileDialogMain.ShowDialog() == DialogResult.OK)
+            {
+                MTMSerializable.Load(openFileDialogMain.FileName, SerializeType.Binary);
+            }
         }
     }
 }

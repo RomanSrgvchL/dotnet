@@ -40,6 +40,15 @@ namespace MTM_Forms
             this.addRepairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editRepairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveBinaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadBinaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.machineToolTypeTabPage = new System.Windows.Forms.TabPage();
             this.machineToolTypeListView = new System.Windows.Forms.ListView();
@@ -55,6 +64,8 @@ namespace MTM_Forms
             this.costColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.repairTypeNotesColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.repairTabPage = new System.Windows.Forms.TabPage();
+            this.openFileDialogMain = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialogMain = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.machineToolTypeTabPage.SuspendLayout();
@@ -134,14 +145,86 @@ namespace MTM_Forms
             // 
             this.menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
             this.machineToolTypeToolStripMenuItem,
             this.repairTypeToolStripMenuItem,
             this.repairToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(905, 30);
+            this.menuStrip.Size = new System.Drawing.Size(905, 28);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "menuStrip";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveToolStripMenuItem,
+            this.loadToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
+            this.fileToolStripMenuItem.Text = "Файл";
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveXMLToolStripMenuItem,
+            this.saveJSONToolStripMenuItem,
+            this.saveBinaryToolStripMenuItem});
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.saveToolStripMenuItem.Text = "Сохранить";
+            // 
+            // saveXMLToolStripMenuItem
+            // 
+            this.saveXMLToolStripMenuItem.Name = "saveXMLToolStripMenuItem";
+            this.saveXMLToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.saveXMLToolStripMenuItem.Text = "XML";
+            this.saveXMLToolStripMenuItem.Click += new System.EventHandler(this.saveXMLToolStripMenuItem_Click);
+            // 
+            // saveJSONToolStripMenuItem
+            // 
+            this.saveJSONToolStripMenuItem.Name = "saveJSONToolStripMenuItem";
+            this.saveJSONToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.saveJSONToolStripMenuItem.Text = "JSON";
+            this.saveJSONToolStripMenuItem.Click += new System.EventHandler(this.saveJSONToolStripMenuItem_Click);
+            // 
+            // saveBinaryToolStripMenuItem
+            // 
+            this.saveBinaryToolStripMenuItem.Name = "saveBinaryToolStripMenuItem";
+            this.saveBinaryToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.saveBinaryToolStripMenuItem.Text = "Двоичный";
+            this.saveBinaryToolStripMenuItem.Click += new System.EventHandler(this.saveBinaryToolStripMenuItem_Click);
+            // 
+            // loadToolStripMenuItem
+            // 
+            this.loadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loadXMLToolStripMenuItem,
+            this.loadJSONToolStripMenuItem,
+            this.loadBinaryToolStripMenuItem});
+            this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.loadToolStripMenuItem.Text = "Загрузить";
+            // 
+            // loadXMLToolStripMenuItem
+            // 
+            this.loadXMLToolStripMenuItem.Name = "loadXMLToolStripMenuItem";
+            this.loadXMLToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.loadXMLToolStripMenuItem.Text = "XML";
+            this.loadXMLToolStripMenuItem.Click += new System.EventHandler(this.loadXMLToolStripMenuItem_Click);
+            // 
+            // loadJSONToolStripMenuItem
+            // 
+            this.loadJSONToolStripMenuItem.Name = "loadJSONToolStripMenuItem";
+            this.loadJSONToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.loadJSONToolStripMenuItem.Text = "JSON";
+            this.loadJSONToolStripMenuItem.Click += new System.EventHandler(this.loadJSONToolStripMenuItem_Click);
+            // 
+            // loadBinaryToolStripMenuItem
+            // 
+            this.loadBinaryToolStripMenuItem.Name = "loadBinaryToolStripMenuItem";
+            this.loadBinaryToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.loadBinaryToolStripMenuItem.Text = "Двоичный";
+            this.loadBinaryToolStripMenuItem.Click += new System.EventHandler(this.loadBinaryToolStripMenuItem_Click);
             // 
             // tabControl
             // 
@@ -149,10 +232,10 @@ namespace MTM_Forms
             this.tabControl.Controls.Add(this.repairTypeTabPage);
             this.tabControl.Controls.Add(this.repairTabPage);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl.Location = new System.Drawing.Point(0, 30);
+            this.tabControl.Location = new System.Drawing.Point(0, 28);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(905, 376);
+            this.tabControl.Size = new System.Drawing.Size(905, 378);
             this.tabControl.TabIndex = 2;
             // 
             // machineToolTypeTabPage
@@ -161,7 +244,7 @@ namespace MTM_Forms
             this.machineToolTypeTabPage.Location = new System.Drawing.Point(4, 25);
             this.machineToolTypeTabPage.Name = "machineToolTypeTabPage";
             this.machineToolTypeTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.machineToolTypeTabPage.Size = new System.Drawing.Size(897, 347);
+            this.machineToolTypeTabPage.Size = new System.Drawing.Size(897, 349);
             this.machineToolTypeTabPage.TabIndex = 0;
             this.machineToolTypeTabPage.Text = "Тип станка";
             this.machineToolTypeTabPage.UseVisualStyleBackColor = true;
@@ -180,7 +263,7 @@ namespace MTM_Forms
             this.machineToolTypeListView.HideSelection = false;
             this.machineToolTypeListView.Location = new System.Drawing.Point(3, 3);
             this.machineToolTypeListView.Name = "machineToolTypeListView";
-            this.machineToolTypeListView.Size = new System.Drawing.Size(891, 341);
+            this.machineToolTypeListView.Size = new System.Drawing.Size(891, 343);
             this.machineToolTypeListView.TabIndex = 1;
             this.machineToolTypeListView.UseCompatibleStateImageBehavior = false;
             this.machineToolTypeListView.View = System.Windows.Forms.View.Details;
@@ -318,5 +401,16 @@ namespace MTM_Forms
         private ColumnHeader costColumnHeader;
         private ColumnHeader repairTypeNotesColumnHeader;
         private ColumnHeader durationColumnHeader;
+        private ToolStripMenuItem fileToolStripMenuItem;
+        private ToolStripMenuItem saveToolStripMenuItem;
+        private ToolStripMenuItem saveXMLToolStripMenuItem;
+        private ToolStripMenuItem saveJSONToolStripMenuItem;
+        private ToolStripMenuItem saveBinaryToolStripMenuItem;
+        private ToolStripMenuItem loadToolStripMenuItem;
+        private ToolStripMenuItem loadXMLToolStripMenuItem;
+        private ToolStripMenuItem loadJSONToolStripMenuItem;
+        private ToolStripMenuItem loadBinaryToolStripMenuItem;
+        private OpenFileDialog openFileDialogMain;
+        private SaveFileDialog saveFileDialogMain;
     }
 }

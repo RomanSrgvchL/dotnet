@@ -5,9 +5,9 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MachineToolMaintenance.exception
+namespace MachineToolMaintenance.Exception
 {
-    public class InvalidMachineToolTypeException : Exception
+    public class InvalidMachineToolTypeException : System.Exception
     {
         public InvalidMachineToolTypeException()
         {
@@ -17,7 +17,7 @@ namespace MachineToolMaintenance.exception
         {
         }
 
-        public InvalidMachineToolTypeException(string message, Exception inner) : base(message, inner)
+        public InvalidMachineToolTypeException(string message, System.Exception inner) : base(message, inner)
         {
         }
 

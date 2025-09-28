@@ -5,9 +5,9 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MachineToolMaintenance.exception
+namespace MachineToolMaintenance.Exception
 {
-    public class InvalidRepairException : Exception
+    public class InvalidRepairException : System.Exception
     {
         public InvalidRepairException()
         {
@@ -17,7 +17,7 @@ namespace MachineToolMaintenance.exception
         {
         }
 
-        public InvalidRepairException(string message, Exception inner) : base(message, inner)
+        public InvalidRepairException(string message, System.Exception inner) : base(message, inner)
         {
         }
 

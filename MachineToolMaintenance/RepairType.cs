@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace MachineToolMaintenance
 {
     /// <summary>
     /// Тип ремонта
     /// </summary>
+    [Serializable]
     public class RepairType : IValidatable
     {
         /// <summary>
@@ -19,6 +21,7 @@ namespace MachineToolMaintenance
         /// <summary>
         /// Продолжительность ремонта
         /// </summary>
+        [XmlIgnore]
         public TimeSpan Duration { get; set; } = TimeSpan.FromDays(1);
 
         /// <summary>
@@ -64,6 +67,15 @@ namespace MachineToolMaintenance
                 $"Длительность: {Duration.Days} дн, {Duration.Hours} ч, {Duration.Minutes} м ; " +
                 $"Стоимость: {Cost} руб ; " +
                 $"Примечания: {Notes}";
+        }
+
+        [XmlElement("Duration")]
+        public string DurationString
+        {
+            // сериализация
+            get => Duration.ToString();
+            // десериализация
+            set => Duration = TimeSpan.Parse(value); 
         }
     }
 }

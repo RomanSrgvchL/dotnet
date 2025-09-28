@@ -34,7 +34,7 @@ namespace MachineToolMaintenance
         /// <summary>
         /// Дата отсчёта ремонтов в системе
         /// </summary>
-        private static readonly DateTime SystemStartDate = new DateTime(2025, 1, 1);
+        public static readonly DateTime SystemStartDate = new DateTime(2025, 1, 1);
         
         public bool IsValid
         {

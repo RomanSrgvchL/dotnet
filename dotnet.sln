@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTM_FormsControlLibrary", "
 		{C855E334-D558-445E-AD58-1B8C1654E55A} = {C855E334-D558-445E-AD58-1B8C1654E55A}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab8", "lab8\lab8.csproj", "{4FA0982F-1E14-47DA-8587-31E119689C68}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +38,10 @@ Global
 		{EB194711-63C9-4BFB-B986-2764F4776AF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB194711-63C9-4BFB-B986-2764F4776AF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB194711-63C9-4BFB-B986-2764F4776AF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FA0982F-1E14-47DA-8587-31E119689C68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FA0982F-1E14-47DA-8587-31E119689C68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FA0982F-1E14-47DA-8587-31E119689C68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FA0982F-1E14-47DA-8587-31E119689C68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
