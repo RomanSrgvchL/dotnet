@@ -171,27 +171,27 @@ namespace MTM_Forms
             this.saveJSONToolStripMenuItem,
             this.saveBinaryToolStripMenuItem});
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
             this.saveToolStripMenuItem.Text = "Сохранить";
             // 
             // saveXMLToolStripMenuItem
             // 
             this.saveXMLToolStripMenuItem.Name = "saveXMLToolStripMenuItem";
-            this.saveXMLToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.saveXMLToolStripMenuItem.Size = new System.Drawing.Size(165, 26);
             this.saveXMLToolStripMenuItem.Text = "XML";
             this.saveXMLToolStripMenuItem.Click += new System.EventHandler(this.saveXMLToolStripMenuItem_Click);
             // 
             // saveJSONToolStripMenuItem
             // 
             this.saveJSONToolStripMenuItem.Name = "saveJSONToolStripMenuItem";
-            this.saveJSONToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.saveJSONToolStripMenuItem.Size = new System.Drawing.Size(165, 26);
             this.saveJSONToolStripMenuItem.Text = "JSON";
             this.saveJSONToolStripMenuItem.Click += new System.EventHandler(this.saveJSONToolStripMenuItem_Click);
             // 
             // saveBinaryToolStripMenuItem
             // 
             this.saveBinaryToolStripMenuItem.Name = "saveBinaryToolStripMenuItem";
-            this.saveBinaryToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.saveBinaryToolStripMenuItem.Size = new System.Drawing.Size(165, 26);
             this.saveBinaryToolStripMenuItem.Text = "Двоичный";
             this.saveBinaryToolStripMenuItem.Click += new System.EventHandler(this.saveBinaryToolStripMenuItem_Click);
             // 
@@ -202,27 +202,27 @@ namespace MTM_Forms
             this.loadJSONToolStripMenuItem,
             this.loadBinaryToolStripMenuItem});
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
             this.loadToolStripMenuItem.Text = "Загрузить";
             // 
             // loadXMLToolStripMenuItem
             // 
             this.loadXMLToolStripMenuItem.Name = "loadXMLToolStripMenuItem";
-            this.loadXMLToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.loadXMLToolStripMenuItem.Size = new System.Drawing.Size(165, 26);
             this.loadXMLToolStripMenuItem.Text = "XML";
             this.loadXMLToolStripMenuItem.Click += new System.EventHandler(this.loadXMLToolStripMenuItem_Click);
             // 
             // loadJSONToolStripMenuItem
             // 
             this.loadJSONToolStripMenuItem.Name = "loadJSONToolStripMenuItem";
-            this.loadJSONToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.loadJSONToolStripMenuItem.Size = new System.Drawing.Size(165, 26);
             this.loadJSONToolStripMenuItem.Text = "JSON";
             this.loadJSONToolStripMenuItem.Click += new System.EventHandler(this.loadJSONToolStripMenuItem_Click);
             // 
             // loadBinaryToolStripMenuItem
             // 
             this.loadBinaryToolStripMenuItem.Name = "loadBinaryToolStripMenuItem";
-            this.loadBinaryToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.loadBinaryToolStripMenuItem.Size = new System.Drawing.Size(165, 26);
             this.loadBinaryToolStripMenuItem.Text = "Двоичный";
             this.loadBinaryToolStripMenuItem.Click += new System.EventHandler(this.loadBinaryToolStripMenuItem_Click);
             // 
@@ -346,6 +346,7 @@ namespace MTM_Forms
             // 
             // repairTabPage
             // 
+            this.repairTabPage.AutoScroll = true;
             this.repairTabPage.Location = new System.Drawing.Point(4, 25);
             this.repairTabPage.Name = "repairTabPage";
             this.repairTabPage.Padding = new System.Windows.Forms.Padding(3);

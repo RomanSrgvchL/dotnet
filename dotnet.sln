@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab3", "lab3\lab3.csproj", "{35E1A400-768A-4F82-BCC9-EB3EE0AB1CA0}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MachineToolMaintenance", "MachineToolMaintenance\MachineToolMaintenance.csproj", "{C855E334-D558-445E-AD58-1B8C1654E55A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTM_Forms", "MTM_Forms\MTM_Forms.csproj", "{B6D9F2BC-162C-4384-8CA3-AEBF342BC3CB}"
@@ -16,16 +14,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTM_FormsControlLibrary", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab8", "lab8\lab8.csproj", "{4FA0982F-1E14-47DA-8587-31E119689C68}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab9", "lab9\lab9.csproj", "{414E8FEB-5614-4217-8380-4EB6AA31A076}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{35E1A400-768A-4F82-BCC9-EB3EE0AB1CA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{35E1A400-768A-4F82-BCC9-EB3EE0AB1CA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{35E1A400-768A-4F82-BCC9-EB3EE0AB1CA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{35E1A400-768A-4F82-BCC9-EB3EE0AB1CA0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C855E334-D558-445E-AD58-1B8C1654E55A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C855E334-D558-445E-AD58-1B8C1654E55A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C855E334-D558-445E-AD58-1B8C1654E55A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -42,6 +38,10 @@ Global
 		{4FA0982F-1E14-47DA-8587-31E119689C68}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4FA0982F-1E14-47DA-8587-31E119689C68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4FA0982F-1E14-47DA-8587-31E119689C68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{414E8FEB-5614-4217-8380-4EB6AA31A076}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{414E8FEB-5614-4217-8380-4EB6AA31A076}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{414E8FEB-5614-4217-8380-4EB6AA31A076}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{414E8FEB-5614-4217-8380-4EB6AA31A076}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
