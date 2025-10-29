@@ -91,24 +91,34 @@ namespace lab9
                         currentEncoding = Encoding.GetEncoding(selectedItem.CodePage);
                     }
 
-                    LoadFileWithEncoding(currentFilePath, currentEncoding);
+                    LoadFileWithEncoding(currentFilePath);
                     UpdateFileNameLabel();
                 }
             }
         }
 
-        private void LoadFileWithEncoding(string filePath, Encoding encoding)
+        private void LoadFileWithEncoding(string filePath)
         {
             try
             {
-                // Читаем сырые байты без анализа BOM
                 byte[] fileBytes = File.ReadAllBytes(filePath);
 
-                // Принудительно декодируем их в выбранной кодировке
-                string content = encoding.GetString(fileBytes);
+                // Пытаемся определить кодировку по BOM
+                Encoding detectedEncoding = DetectEncodingFromBOM(fileBytes);
 
+                // Если BOM не найден — используем выбранную в комбобоксе
+                if (detectedEncoding == null)
+                {
+                    if (encodingComboBox.SelectedItem is ComboItem selectedItem)
+                        detectedEncoding = Encoding.GetEncoding(selectedItem.CodePage);
+                    else
+                        detectedEncoding = Encoding.UTF8; // дефолт
+                }
+
+                string content = detectedEncoding.GetString(fileBytes);
                 codeTextBox.Text = content;
-                currentEncoding = encoding;
+                // сохраняем реальную кодировку файла
+                currentEncoding = detectedEncoding; 
 
                 constantsTextBox.Clear();
                 literalsTextBox.Clear();
@@ -118,6 +128,23 @@ namespace lab9
                 MessageBox.Show($"Ошибка загрузки файла: {ex.Message}", "Ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        // Поиск бома
+        private Encoding DetectEncodingFromBOM(byte[] bytes)
+        {
+            if (bytes.Length >= 4 && bytes[0] == 0xFF && bytes[1] == 0xFE && bytes[2] == 0x00 && bytes[3] == 0x00)
+                return Encoding.UTF32;
+            if (bytes.Length >= 4 && bytes[0] == 0x00 && bytes[1] == 0x00 && bytes[2] == 0xFE && bytes[3] == 0xFF)
+                return new UTF32Encoding(true, false);
+            if (bytes.Length >= 3 && bytes[0] == 0xEF && bytes[1] == 0xBB && bytes[2] == 0xBF)
+                return Encoding.UTF8;
+            if (bytes.Length >= 2 && bytes[0] == 0xFF && bytes[1] == 0xFE)
+                return Encoding.Unicode;
+            if (bytes.Length >= 2 && bytes[0] == 0xFE && bytes[1] == 0xFF)
+                return Encoding.BigEndianUnicode;
+
+            return null;
         }
 
         private void encodingComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -131,7 +158,7 @@ namespace lab9
                     if (!string.IsNullOrEmpty(currentFilePath))
                     {
                         currentEncoding = newEncoding;
-                        LoadFileWithEncoding(currentFilePath, currentEncoding);
+                        LoadFileWithEncoding(currentFilePath);
                     }
                     else
                     {
