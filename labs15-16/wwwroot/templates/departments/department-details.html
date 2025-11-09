@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Информация об отделе</title>
+    <link rel="stylesheet" href="../../styles/main.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 id="department-title">Информация об отделе</h1>
+            <nav>
+                <a href="../../index.html">Главная</a> |
+                <a href="departments.html">Список отделов</a> |
+                <a href="../employees/employees.html">Сотрудники</a>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Информация об отделе -->
+            <div class="section">
+                <div id="department-info">
+                    <div id="loading">Загрузка...</div>
+                </div>
+            </div>
+
+            <!-- Список сотрудников отдела -->
+            <div class="section">
+                <h2>Сотрудники отдела</h2>
+                <div id="department-employees">
+                    <div id="employees-loading">Загрузка сотрудников...</div>
+                    <div id="employees-list" class="items-list"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="../../scripts/departments/department-details.js"></script>
+</body>
+</html>

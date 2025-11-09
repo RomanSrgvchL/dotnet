@@ -24,6 +24,7 @@ namespace labs15_16.Controllers
         public async Task<ActionResult<IEnumerable<object>>> GetDepartments()
         {
             var departments = await _context.Departments
+                .OrderBy(e => e.Id)
                 .Select(d => new
                 {
                     d.Id,

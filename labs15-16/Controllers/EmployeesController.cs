@@ -6,6 +6,7 @@ using labs15_16.Dtos;
 using labs15_16.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 
 namespace labs15_16.Controllers
 {
@@ -25,17 +26,18 @@ namespace labs15_16.Controllers
         public async Task<ActionResult<IEnumerable<object>>> GetEmployees()
         {
             var employees = await _context.Employees
-            .Include(e => e.Department)
-            .Select(e => new
-            {
-                e.Id,
-                e.FullName,
-                e.Position,
-                e.DepartmentId,
-                Photo = e.Photo == null ? null : Convert.ToBase64String(e.Photo),
-                Department = e.Department == null ? null : new { e.Department.Id, e.Department.Name }
-            })
-            .ToListAsync();
+                .Include(e => e.Department)
+                .OrderBy(e => e.Id)
+                .Select(e => new
+                {
+                    e.Id,
+                    e.FullName,
+                    e.Position,
+                    e.DepartmentId,
+                    Photo = e.Photo == null ? null : Convert.ToBase64String(e.Photo),
+                    Department = e.Department == null ? null : new { e.Department.Id, e.Department.Name }
+                })
+                .ToListAsync();
 
             return Ok(employees);
         }
@@ -69,8 +71,30 @@ namespace labs15_16.Controllers
 
         // POST: api/Employees
         [HttpPost]
-        public async Task<ActionResult<Employee>> PostEmployee(EmployeeDto employeeDto)
+        public async Task<ActionResult<Employee>> PostEmployee([FromForm] EmployeeFormData formData)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            byte[] photoBytes = null;
+            if (formData.Photo != null)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    await formData.Photo.CopyToAsync(memoryStream);
+                    photoBytes = memoryStream.ToArray();
+                }
+            }
+
+            var employeeDto = new EmployeeDto(
+                formData.DepartmentId,
+                formData.FullName,
+                formData.Position,
+                photoBytes
+            );
+
             if (!employeeDto.IsValid())
             {
                 return BadRequest("Некорректные данные сотрудника");
@@ -86,7 +110,7 @@ namespace labs15_16.Controllers
 
         // PUT: api/Employees/{id}
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutEmployee(int id, EmployeeDto employeeDto)
+        public async Task<IActionResult> PutEmployee(int id, [FromForm] EmployeeFormData formData)
         {
             if (id <= 0)
             {
@@ -99,15 +123,24 @@ namespace labs15_16.Controllers
                 return NotFound($"Сотрудник с ID {id} не найден");
             }
 
-            if (!employeeDto.IsValid())
+            if (!ModelState.IsValid)
             {
-                return BadRequest("Некорректные данные сотрудника");
+                return BadRequest(ModelState);
             }
 
-            employee.DepartmentId = employeeDto.DepartmentId;
-            employee.FullName = employeeDto.FullName;
-            employee.Position = employeeDto.Position;
-            employee.Photo = employeeDto.Photo;
+            // Обновляем фото только если новое было загружено
+            if (formData.Photo != null)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    await formData.Photo.CopyToAsync(memoryStream);
+                    employee.Photo = memoryStream.ToArray();
+                }
+            }
+
+            employee.DepartmentId = formData.DepartmentId;
+            employee.FullName = formData.FullName;
+            employee.Position = formData.Position;
 
             try
             {
@@ -142,5 +175,14 @@ namespace labs15_16.Controllers
 
         private bool EmployeeExists(int id) =>
             _context.Employees.Any(e => e.Id == id);
+    }
+
+    // Модель для получения данных из формы
+    public class EmployeeFormData
+    {
+        public int DepartmentId { get; set; }
+        public string FullName { get; set; }
+        public string Position { get; set; }
+        public IFormFile Photo { get; set; }
     }
 }
