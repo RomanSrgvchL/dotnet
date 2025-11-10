@@ -1,0 +1,48 @@
+﻿@model lab14.Models.Employee
+
+@{
+    ViewData["Title"] = "Create Employee";
+}
+
+<h1>Create Employee</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div class="form-group mb-3">
+                <label asp-for="DepartmentId" class="control-label">Department *</label>
+                <select asp-for="DepartmentId" class="form-control" asp-items="ViewBag.DepartmentId" required>
+                    <option value="">-- Select Department --</option>
+                </select>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="FullName" class="control-label">Full Name *</label>
+                <input asp-for="FullName" class="form-control"
+                       placeholder="Enter full name"
+                       required maxlength="100" />
+                <small class="text-muted">Maximum 100 characters</small>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Position" class="control-label">Position *</label>
+                <input asp-for="Position" class="form-control"
+                       placeholder="Enter position"
+                       required maxlength="50" />
+                <small class="text-muted">Maximum 50 characters</small>
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="control-label">Photo (Optional)</label>
+                <input asp-for="PhotoFile" type="file" class="form-control" accept="image/*" />
+                <small class="text-muted">Upload employee photo (optional)</small>
+            </div>
+
+            <div class="form-group mt-4">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>

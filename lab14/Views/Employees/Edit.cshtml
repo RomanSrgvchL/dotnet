@@ -1,0 +1,64 @@
+﻿@model lab14.Models.Employee
+
+@{
+    ViewData["Title"] = "Edit Employee";
+}
+
+<h1>Edit Employee</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group mb-3">
+                <label asp-for="DepartmentId" class="control-label">Department *</label>
+                <select asp-for="DepartmentId" class="form-control" asp-items="ViewBag.DepartmentId" required>
+                    <option value="">-- Select Department --</option>
+                </select>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="FullName" class="control-label">Full Name *</label>
+                <input asp-for="FullName" class="form-control"
+                       required maxlength="100" />
+                <small class="text-muted">Maximum 100 characters</small>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Position" class="control-label">Position *</label>
+                <input asp-for="Position" class="form-control"
+                       required maxlength="50" />
+                <small class="text-muted">Maximum 50 characters</small>
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="control-label">Current Photo</label>
+                <div>
+                    @if (Model.Photo != null && Model.Photo.Length > 0)
+                    {
+                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.Photo)"
+                             alt="Current Photo"
+                             style="max-width: 150px; max-height: 150px;" />
+                        <br />
+                        <small class="text-muted">Current photo</small>
+                    }
+                    else
+                    {
+                        <span class="text-muted">No photo</span>
+                    }
+                </div>
+
+                <label class="control-label mt-2">Upload New Photo (Optional)</label>
+                <input asp-for="PhotoFile" type="file" class="form-control" accept="image/*" />
+                <small class="text-muted">Leave empty to keep current photo</small>
+            </div>
+
+            <div class="form-group mt-4">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
